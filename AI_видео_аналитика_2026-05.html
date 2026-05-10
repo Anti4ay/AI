@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-видеогенерация: рынок и практика — гайд для новичка (май 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#fafafa;
+  --text:#1c1c1c;
+  --muted:#6e6e6e;
+  --line:#ecebe8;
+  --soft:#f1f1f1;
+  --ink:#000000;
+  --orange:#ff4000;
+  --shadow-card: rgba(0,0,0,0.03) 0px 0.706592px 0.706592px -0.416667px, rgba(0,0,0,0.03) 0px 1.80656px 1.80656px -0.833333px, rgba(0,0,0,0.03) 0px 3.62176px 3.62176px -1.25px, rgba(0,0,0,0.03) 0px 6.8656px 6.8656px -1.66667px, rgba(0,0,0,0.03) 0px 13.6468px 13.6468px -2.08333px, rgba(0,0,0,0.03) 0px 30px 30px -2.5px;
+  --ff-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --ff-ui: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--canvas);
+  color:var(--text);
+  font-family:var(--ff-ui);
+  font-size:16px;
+  line-height:1.4;
+  letter-spacing:-0.02px;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"ss01","cv11";
+}
+.wrap{max-width:1080px;margin:0 auto;padding:64px 24px 96px;}
+
+/* Typography */
+h1.display{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:58px;
+  line-height:0.95;
+  letter-spacing:-0.052em;
+  margin:0 0 16px;
+  color:var(--text);
+}
+h2{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:42px;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  margin:80px 0 24px;
+  color:var(--text);
+}
+h2 .num{
+  display:inline-block;
+  font-family:var(--ff-ui);
+  font-size:14px;
+  font-weight:500;
+  color:var(--orange);
+  letter-spacing:0;
+  vertical-align:middle;
+  margin-right:14px;
+  padding:6px 12px;
+  border:1px solid var(--orange);
+  border-radius:100px;
+  line-height:1;
+  position:relative;
+  top:-6px;
+}
+h3{
+  font-family:var(--ff-display);
+  font-weight:500;
+  font-size:24px;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  margin:32px 0 12px;
+  color:var(--text);
+}
+h4{
+  font-family:var(--ff-ui);
+  font-weight:600;
+  font-size:16px;
+  line-height:1.4;
+  letter-spacing:-0.02em;
+  margin:0 0 8px;
+  color:var(--text);
+}
+p{margin:8px 0 12px;}
+.subtitle{
+  font-family:var(--ff-display);
+  font-weight:500;
+  font-size:18px;
+  color:var(--muted);
+  letter-spacing:-0.02em;
+  margin:0 0 40px;
+}
+.dim{color:var(--muted);font-size:14px;}
+strong,b{font-weight:600;color:var(--text);}
+a{color:var(--orange);text-decoration:none;font-weight:500;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+ul{margin:8px 0 12px;padding-left:22px;}
+ol{margin:8px 0 12px;padding-left:22px;}
+li{margin:6px 0;}
+hr{border:0;border-top:1px solid var(--line);margin:64px 0;}
+
+/* Hero */
+.hero-eyebrow{
+  display:inline-block;
+  font-family:var(--ff-ui);
+  font-weight:500;
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:0;
+  padding:6px 14px;
+  border:1px solid var(--line);
+  border-radius:100px;
+  margin-bottom:24px;
+}
+.hero-eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:100px;background:var(--orange);margin-right:8px;vertical-align:middle;}
+
+/* Cards */
+.card{
+  background:var(--canvas);
+  border-radius:30px;
+  padding:32px;
+  box-shadow:var(--shadow-card);
+}
+.card h3{margin-top:0;}
+.card-soft{
+  background:var(--line);
+  border-radius:30px;
+  padding:32px;
+}
+.card-tldr{
+  background:var(--text);
+  color:var(--canvas);
+  border-radius:30px;
+  padding:32px;
+  margin:24px 0 40px;
+}
+.card-tldr h4{color:var(--canvas);font-size:14px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:#999;margin-bottom:16px;}
+.card-tldr ul{padding-left:0;list-style:none;margin:0;}
+.card-tldr li{padding:10px 0;border-top:1px solid #2a2a2a;font-size:15px;line-height:1.5;letter-spacing:-0.01em;}
+.card-tldr li:first-child{border-top:0;padding-top:0;}
+.card-tldr li:last-child{padding-bottom:0;}
+.card-tldr b{color:var(--canvas);}
+
+/* TOC */
+.toc{
+  background:var(--canvas);
+  border-radius:30px;
+  padding:32px;
+  box-shadow:var(--shadow-card);
+  margin:24px 0 64px;
+}
+.toc-title{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  margin:0 0 16px;
+}
+.toc ol{
+  list-style:none;
+  padding:0;
+  margin:0;
+  columns:2;
+  column-gap:32px;
+}
+.toc li{
+  padding:8px 0;
+  border-top:1px solid var(--line);
+  break-inside:avoid;
+  font-size:15px;
+}
+.toc li:first-child,.toc li:nth-child(7){border-top:0;}
+.toc a{color:var(--text);}
+.toc a:hover{color:var(--orange);text-decoration:none;}
+.toc .n{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:12px;font-size:13px;}
+
+/* Notes */
+.note,.tip,.warn{
+  border-radius:24px;
+  padding:20px 24px;
+  margin:18px 0;
+  font-size:15px;
+  line-height:1.5;
+}
+.note{background:var(--line);border-left:3px solid var(--muted);}
+.tip{background:#fff;border:1px solid var(--orange);position:relative;}
+.tip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);border-radius:24px 0 0 24px;}
+.warn{background:var(--line);border-left:3px solid var(--ink);}
+
+/* Tables */
+.table-wrap{
+  background:var(--canvas);
+  border-radius:30px;
+  padding:8px;
+  box-shadow:var(--shadow-card);
+  margin:16px 0 24px;
+  overflow-x:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:var(--ff-ui);
+  font-size:14px;
+}
+thead th{
+  text-align:left;
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:13px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  padding:14px 18px;
+  border-bottom:1px solid var(--line);
+  vertical-align:bottom;
+}
+tbody td{
+  padding:14px 18px;
+  border-top:1px solid var(--line);
+  vertical-align:top;
+  letter-spacing:-0.007px;
+}
+tbody tr:first-child td{border-top:0;}
+tbody td b{color:var(--text);font-weight:600;}
+
+/* Card grid */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin:16px 0 24px;
+}
+.cards-grid .card{padding:28px;}
+.cards-grid h3{font-size:20px;margin-bottom:6px;}
+.price-pill{
+  display:inline-block;
+  font-family:var(--ff-ui);
+  font-weight:600;
+  font-size:13px;
+  color:var(--text);
+  background:var(--line);
+  border-radius:100px;
+  padding:6px 14px;
+  margin:0 0 14px;
+  letter-spacing:-0.007px;
+}
+.cards-grid .card p{font-size:14px;line-height:1.5;letter-spacing:-0.007px;color:var(--text);}
+
+/* Setup */
+.setup{
+  background:var(--canvas);
+  border-radius:30px;
+  padding:36px;
+  box-shadow:var(--shadow-card);
+  margin:24px 0;
+}
+.setup-tag{
+  display:inline-block;
+  background:var(--orange);
+  color:var(--canvas);
+  font-family:var(--ff-ui);
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  padding:5px 12px;
+  border-radius:100px;
+  margin-bottom:14px;
+}
+.setup h3{margin-top:0;font-size:26px;letter-spacing:-0.02em;}
+.stack-row{
+  background:var(--line);
+  border-radius:16px;
+  padding:16px 20px;
+  font-size:14px;
+  line-height:1.5;
+  margin:14px 0;
+  letter-spacing:-0.007px;
+}
+.stack-row b{color:var(--text);}
+.setup-meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:14px 0;
+}
+.setup-meta .meta-item{
+  background:var(--line);
+  border-radius:16px;
+  padding:14px 18px;
+}
+.meta-item .meta-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  font-weight:500;
+  margin-bottom:4px;
+  display:block;
+}
+.meta-item .meta-value{
+  font-family:var(--ff-display);
+  font-size:18px;
+  font-weight:600;
+  color:var(--text);
+  letter-spacing:-0.02em;
+}
+
+/* Glossary table styled simpler */
+.glossary{
+  background:var(--canvas);
+  border-radius:30px;
+  padding:8px 16px;
+  box-shadow:var(--shadow-card);
+}
+.glossary-row{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:24px;
+  padding:18px 16px;
+  border-top:1px solid var(--line);
+  align-items:start;
+}
+.glossary-row:first-child{border-top:0;}
+.glossary-term{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:18px;
+  letter-spacing:-0.02em;
+  color:var(--text);
+}
+.glossary-def{font-size:15px;line-height:1.5;color:var(--text);letter-spacing:-0.007px;}
+
+/* People list */
+.people-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:16px 0;
+}
+.people-row{
+  background:var(--canvas);
+  border-radius:20px;
+  padding:18px 22px;
+  box-shadow:var(--shadow-card);
+}
+.people-row .name{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin-bottom:4px;
+}
+.people-row .desc{font-size:13px;color:var(--muted);line-height:1.45;}
+
+/* Pipeline */
+.pipeline{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin:24px 0;
+}
+.pipeline-step{
+  background:var(--canvas);
+  border-radius:24px;
+  padding:24px 20px;
+  box-shadow:var(--shadow-card);
+  position:relative;
+}
+.pipeline-step .step-n{
+  font-family:var(--ff-display);
+  font-size:42px;
+  font-weight:600;
+  color:var(--orange);
+  letter-spacing:-0.03em;
+  line-height:0.9;
+  margin-bottom:12px;
+}
+.pipeline-step h4{font-size:15px;}
+.pipeline-step .tool{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4;}
+.pipeline-step .time{display:inline-block;margin-top:10px;font-size:12px;font-weight:500;color:var(--text);background:var(--line);border-radius:100px;padding:4px 10px;}
+
+/* Footer */
+footer{
+  margin-top:96px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+  font-size:14px;
+  color:var(--muted);
+}
+footer h3{font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:500;margin:24px 0 12px;font-family:var(--ff-ui);}
+footer ul{padding-left:18px;}
+footer li{margin:4px 0;font-size:13px;}
+footer a{color:var(--text);}
+footer a:hover{color:var(--orange);}
+.meta-row{
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-top:32px;
+  padding:20px 24px;
+  background:var(--line);
+  border-radius:24px;
+  font-size:13px;
+}
+.meta-row b{color:var(--text);}
+
+/* Number callouts */
+.callouts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:24px 0;
+}
+.callout{
+  background:var(--canvas);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:var(--shadow-card);
+}
+.callout .big{
+  font-family:var(--ff-display);
+  font-weight:600;
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-0.03em;
+  color:var(--orange);
+  display:block;
+  margin-bottom:8px;
+}
+.callout .label{font-size:14px;line-height:1.4;color:var(--text);letter-spacing:-0.007px;}
+
+/* Mobile */
+@media (max-width:760px){
+  .wrap{padding:32px 16px 64px;}
+  h1.display{font-size:42px;line-height:1;letter-spacing:-0.04em;}
+  h2{font-size:32px;line-height:1.1;letter-spacing:-0.02em;margin:48px 0 16px;}
+  h3{font-size:20px;}
+  .toc ol{columns:1;}
+  .cards-grid,.callouts,.people-list,.setup-meta{grid-template-columns:1fr;}
+  .pipeline{grid-template-columns:1fr 1fr;}
+  .glossary-row{grid-template-columns:1fr;gap:6px;}
+  .glossary-term{font-size:15px;}
+  .setup{padding:24px;}
+  .card,.toc,.card-tldr{padding:24px;}
+  table{font-size:13px;}
+  thead th,tbody td{padding:10px 12px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero-eyebrow"><span class="dot"></span>Гайд для новичка · Май 2026</div>
+<h1 class="display">AI-видеогенерация: рынок и практика.</h1>
+<p class="subtitle">Прочитал — понял весь рынок, выбрал инструмент, начал делать ролики.</p>
+
+<div class="card-tldr">
+<h4>Главное за 30 секунд</h4>
+<ul>
+<li>AI-видео — уже промышленный инструмент. <b>Coca-Cola</b> сделала holiday-ролик из 70 000 AI-клипов, <b>Toys R Us</b> — рекламу целиком на Sora, <b>Mango</b> заменила живых моделей.</li>
+<li><b>Higgsfield</b> — топ-выбор для cinematic и виральных шотов. Это $1.3B стартап с $300M ARR и 15M+ пользователей. Не закроется.</li>
+<li><b>Sora app закрыт 26 апреля 2026</b> (OpenAI прожигал $1M/день). Доступ к Sora 2 — только через ChatGPT Plus / Pro.</li>
+<li>Базовый ролик 5-15 сек делается за вечер на $19-39/мес. Профи-уровень — 2-3 месяца ежедневной практики.</li>
+<li>Кейс эффективности: <b>Kalshi NBA Finals 2025</b> — $2 000 production → 50M+ просмотров. Маржа AI-агентств 20-50× от прежних рекламных бюджетов.</li>
+</ul>
+</div>
+
+<div class="toc">
+<p class="toc-title">Содержание</p>
+<ol>
+<li><span class="n">01</span><a href="#what">Что такое AI-видео — на пальцах</a></li>
+<li><span class="n">02</span><a href="#map">Карта рынка одним взглядом</a></li>
+<li><span class="n">03</span><a href="#higgsfield">Higgsfield — главный герой</a></li>
+<li><span class="n">04</span><a href="#rivals">Конкуренты Higgsfield</a></li>
+<li><span class="n">05</span><a href="#avatars">AI-аватары — 3 кита</a></li>
+<li><span class="n">06</span><a href="#pipeline">Пайплайн виралки</a></li>
+<li><span class="n">07</span><a href="#price">Сколько стоит ролик</a></li>
+<li><span class="n">08</span><a href="#setups">4 готовых сетапа под твои задачи</a></li>
+<li><span class="n">09</span><a href="#trends">Тренды и кейсы</a></li>
+<li><span class="n">10</span><a href="#learn">Где учиться</a></li>
+<li><span class="n">11</span><a href="#checklist">Чек-лист первой недели</a></li>
+</ol>
+</div>
+
+<h2 id="what"><span class="num">01</span>Что такое AI-видео — на пальцах</h2>
+
+<div class="note">
+AI-видео — это когда нейросеть превращает текст или картинку в видеоролик. 4 главных формата: <b>текст→видео</b>, <b>картинка→видео</b>, <b>аватар</b>, <b>slop</b>. Всё, можно идти дальше.
+</div>
+
+<div class="glossary">
+<div class="glossary-row">
+<div class="glossary-term">Text-to-Video<br><span class="dim">T2V</span></div>
+<div class="glossary-def">Пишешь промпт «кот скачет по луне» — нейросеть рисует видео. Точность ниже, чем у I2V, потому что нет визуального референса.</div>
+</div>
+<div class="glossary-row">
+<div class="glossary-term">Image-to-Video<br><span class="dim">I2V</span></div>
+<div class="glossary-def">Загружаешь картинку (например из Midjourney) — она оживает. Главный профи-формат: больше контроля над композицией.</div>
+</div>
+<div class="glossary-row">
+<div class="glossary-term">AI-аватар</div>
+<div class="glossary-def">Цифровой человек с твоим лицом и голосом. Загружаешь скрипт — аватар произносит. Используется в вебинарах, talking head контенте, рекламе.</div>
+</div>
+<div class="glossary-row">
+<div class="glossary-term">AI slop</div>
+<div class="glossary-def">Дешёвый массовый AI-контент: смешные котики-астронавты, пушистые зверьки в Walmart, бесконечные «факты». Виральный, простой, монетизируется на TikTok / YouTube Shorts.</div>
+</div>
+</div>
+
+<h2 id="map"><span class="num">02</span>Карта рынка одним взглядом</h2>
+
+<div class="note">
+6 категорий инструментов. Для виралки нужно <b>2-3 из разных категорий</b>: видео + звук + монтаж. Остальное — опционально.
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Категория</th><th>Топ-1</th><th>Альтернативы</th><th>Зачем нужно</th></tr></thead>
+<tbody>
+<tr><td><b>Видеомодели (T2V/I2V)</b></td><td>Higgsfield</td><td>Sora 2, Veo 3.1, Runway, Kling, Luma</td><td>Главное — генерируют сами видеоролики</td></tr>
+<tr><td><b>AI-аватары</b></td><td>HeyGen</td><td>Synthesia, Higgsfield Soul ID, Hedra</td><td>Talking head, вебинары, UGC-реклама</td></tr>
+<tr><td><b>Image-генераторы</b></td><td>Midjourney V7</td><td>Flux Pro / Kontext, Ideogram</td><td>Статика-референс для I2V (профи-пайплайн)</td></tr>
+<tr><td><b>Озвучка / голоса</b></td><td>ElevenLabs</td><td>OpenAI TTS, Cartesia</td><td>Любой голос на любом языке + клонирование</td></tr>
+<tr><td><b>Музыка</b></td><td>Suno</td><td>Udio, Stable Audio</td><td>Фоновая музыка / треки за 1 минуту</td></tr>
+<tr><td><b>Монтаж</b></td><td>CapCut Pro</td><td>DaVinci Resolve, Premiere</td><td>Склейка, субтитры, эффекты</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tip">
+<b>Что это значит для старта:</b> можно начать с <b>одного инструмента</b> (Higgsfield) и через неделю добавить ElevenLabs + CapCut — этого достаточно для первых 80% задач.
+</div>
+
+<h2 id="higgsfield"><span class="num">03</span>Higgsfield — главный герой</h2>
+
+<div class="callouts">
+<div class="callout"><span class="big">$1.3B</span><span class="label">оценка стартапа<br>(Series A extension от Accel, январь 2026)</span></div>
+<div class="callout"><span class="big">$300M</span><span class="label">ARR на февраль 2026<br>цель к концу года — $1B</span></div>
+<div class="callout"><span class="big">15M+</span><span class="label">пользователей,<br>4.5M генераций в день</span></div>
+</div>
+
+<p>Higgsfield основан <b>Алексом Машрабовым</b> (бывший CEO AI Factory в Snap). Топ-выбор для <b>cinematic</b> роликов и виральных CGI-шотов. Главные продукты: <b>DoP</b> (камера), <b>Soul</b> (image), <b>Soul ID</b> (твой аватар), <b>Speak</b> (talking head), <b>Effects</b> (эффекты в один клик).</p>
+
+<h3>Почему именно Higgsfield, а не Sora или Runway</h3>
+<ul>
+<li>Сильнее всех в «movie shots» — <b>70+ пресетов движения камеры</b> (zoom, dolly, orbit, crash zoom), киношная композиция, точный контроль</li>
+<li>Soul ID — лучшая работа с лицами: тренируешь свой аватар на 10-20 фото за ~3 минуты, лицо консистентно играет в любых сценах</li>
+<li>Effects-библиотека — десятки готовых cinematic пресетов (взрыв, slow-mo, 3D Rotation, Roll Transition) в один клик</li>
+<li><b>Агрегатор 15+ моделей в одной подписке:</b> Sora 2, Veo 3.1, Kling 3.0, WAN 2.6, Hailuo и др. — не платишь отдельно за каждый</li>
+</ul>
+
+<h3>Все продукты Higgsfield</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Продукт</th><th>Для чего</th></tr></thead>
+<tbody>
+<tr><td><b>DoP</b><br><span class="dim">Director of Photography</span></td><td>Управление камерой: dolly, zoom, orbit, crane. Контроль кинематографа</td></tr>
+<tr><td><b>Soul / Soul 2.0</b></td><td>Image-генератор для эстетичных статик с акцентом на cinematic стиль</td></tr>
+<tr><td><b>Soul ID</b></td><td>Твой персональный аватар. 15 фото → 5 минут → лицо консистентно играет в любых сценах</td></tr>
+<tr><td><b>Speak / Speak 2.0</b></td><td>Talking head: загружаешь фото или аватар + текст → говорящее видео в 70+ языках</td></tr>
+<tr><td><b>Mix</b></td><td>Совмещение нескольких видеоклипов в один пайплайн</td></tr>
+<tr><td><b>Avatar</b></td><td>Готовый набор пресетов аватаров (если не хочешь Soul ID тренировать)</td></tr>
+<tr><td><b>Effects</b></td><td>Cinematic пресеты: взрыв, slow-mo, рост гигантов, морфинг — в один клик</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Тарифы Higgsfield</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>План</th><th>Цена</th><th>Кредиты</th><th>Кому</th></tr></thead>
+<tbody>
+<tr><td><b>Free</b></td><td>$0</td><td>~10 кредитов / день</td><td>Попробовать на пару роликов</td></tr>
+<tr><td><b>Basic</b></td><td>$9 / мес</td><td>70 кредитов / мес</td><td>Только понюхать сервис</td></tr>
+<tr><td><b>Pro</b></td><td>$17.40 (год) или $29 / мес</td><td>600 кредитов, все модели (Sora 2, Veo 3.1, Kling, WAN)</td><td><b>Оптимум для большинства</b></td></tr>
+<tr><td><b>Ultimate</b></td><td>~$49-69 / мес (год)</td><td>3 000 кредитов, parallel processing 8 video / 8 image</td><td>Активный контент-конвейер</td></tr>
+<tr><td><b>Creator</b></td><td>$49.80 (год) или $119-149 / мес</td><td>6 000 кредитов + 2-летний доступ к Nano Banana Pro</td><td>Профи, фрилансер, агентство</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tip">
+<b>Годовая vs месячная:</b> на Higgsfield годовая оплата даёт огромную скидку (Pro $17.40 vs $29 = -40%, Creator $49.80 vs $149 = -67%). Если уверен — бери год.
+</div>
+
+<h3>Сколько стоит 1 ролик</h3>
+<ul>
+<li><b>Стандартный 5-секундный ролик</b> на средней модели: ~10-30 кредитов (≈$0.50-1.50 на Pro $29 плане)</li>
+<li><b>Премиум-модели</b> (Sora 2, Veo 3.1): больше кредитов за ролик — 30-100 кредитов</li>
+<li><b>Higgsfield Soul ID — твой аватар:</b> отдельная оплата за тренировку (см. на pricing-странице, $3-10)</li>
+<li><b>1 рабочая сессия</b> (10-15 итераций): 100-300 кредитов = половина Pro-плана за день экспериментов</li>
+</ul>
+
+<div class="warn">
+<b>Главный нюанс:</b> на Higgsfield редко получаешь идеальный результат с первой попытки. Норма — <b>5-10 итераций на ролик</b>. Закладывай это в кредиты при выборе тарифа.
+</div>
+
+<h3>Топ-креаторы Higgsfield (X / Twitter)</h3>
+<div class="people-list">
+<div class="people-row"><div class="name">PJ Ace · @PJaccetturo</div><div class="desc">CEO Genre.ai. 300M+ просмотров AI-рекламы. Сделал Kalshi NBA Finals за $2K. Клиенты: Oracle, Popeyes, Qatar Airlines.</div></div>
+<div class="people-row"><div class="name">Heather Cooper · @HBCoop_</div><div class="desc">60K+ подписчиков, newsletter «Visually AI». Creative Partner у Runway, Luma, Kling, Higgsfield. 150K+ AI-картинок.</div></div>
+<div class="people-row"><div class="name">Pierrick Chevallier · @CharaspowerAI</div><div class="desc">53K. AI VFX Artist для House of David S2 (Amazon Prime), Adobe Firefly Ambassador.</div></div>
+<div class="people-row"><div class="name">Kavan Cardoza · Phantom X</div><div class="desc">AI-сериал The Chronicles of Bone. Echo Hunter — первый AI-фильм одобренный SAG-AFTRA.</div></div>
+<div class="people-row"><div class="name">Min Choi · @minchoi</div><div class="desc">Куратор AI-новостей, лучшие шоты со всего мира.</div></div>
+<div class="people-row"><div class="name">The Dor Brothers</div><div class="desc">Berlin-based, 500M+ просмотров. APEX набрал 20M views за 48 часов, обсуждался у Joe Rogan.</div></div>
+</div>
+
+<h2 id="rivals"><span class="num">04</span>Конкуренты Higgsfield</h2>
+
+<div class="note">
+6 главных альтернатив. <b>Sora</b> — за уровень детализации, <b>Veo 3</b> — за встроенный звук, <b>Runway</b> — за инструменты редактирования, <b>Kling</b> — за реализм лиц, <b>Luma</b> — за скорость, <b>Pika / Hailuo</b> — за эффекты и цену.
+</div>
+
+<div class="cards-grid">
+
+<div class="card">
+<h3>OpenAI Sora 2 / Sora 2 Pro</h3>
+<span class="price-pill">$20 (Plus) · $200 (Pro)</span>
+<p><b>⚠ Sora app и web закрыты 26 апреля 2026</b> (OpenAI прожигал ~$1M/день). Доступ ТОЛЬКО через ChatGPT.<br>
+<b>Plus:</b> до 720p, 15 сек, 1 000 кред / мес. <b>Pro:</b> до 1080p, 25 сек, 10K кред + unlimited Relaxed + Sora 2 Pro.</p>
+<p><b>Берёшь когда:</b> нужен максимум фотореализма + длинные клипы со звуком.</p>
+</div>
+
+<div class="card">
+<h3>Google Veo 3.1 / Veo 4</h3>
+<span class="price-pill">$19.99 (AI Pro) · $249.99 (Ultra)</span>
+<p>Уникален: <b>сам генерирует звук</b> (диалоги, музыка, эффекты) синхронно с видео. AI Pro — ~90 Veo 3.1 Fast роликов / мес, Ultra — 25 000 кред + Veo 4.<br>
+<b>Veo 4 (апрель 2026):</b> единственный на рынке с 4K + до 30 сек + storyboarding + zero-shot avatar.</p>
+<p><b>Берёшь когда:</b> нужны ролики со звуком и 4K.</p>
+</div>
+
+<div class="card">
+<h3>Runway Gen-4 / Aleph</h3>
+<span class="price-pill">$12 · $28 · $76 (год)</span>
+<p>Старичок рынка с лучшим набором редактирующих инструментов: motion brush, V2V, motion tracking. Standard 625 кред / Pro 2 250 кред / Unlimited 2 250 + неограниченный Explore mode.</p>
+<p><b>Берёшь когда:</b> нужно править существующие видео, делать VFX, прецизионную анимацию.</p>
+</div>
+
+<div class="card">
+<h3>Kling 2.5+ (KuaiShou)</h3>
+<span class="price-pill">$5.99 · $29.99 · $54.99 · $180</span>
+<p>Лучшая физика движений и реализм лиц. Standard 660 кред / Pro 3 000 кред / Premier 8 000 кред / Ultra 26 000 кред (с Kling 3.0). Самый дешёвый старт на рынке.</p>
+<p><b>Берёшь когда:</b> реалистичные люди, естественная физика, минимальный бюджет.</p>
+</div>
+
+<div class="card">
+<h3>Luma Ray 2 / Ray 3</h3>
+<span class="price-pill">$10 · $30 · $95</span>
+<p>Скоростная T2V модель. 5-10 сек, 1080p. Сильна в light / material эффектах. Ray 3 поддерживает HDR. Уточнение: <a href="https://lumalabs.ai/pricing">lumalabs.ai/pricing</a></p>
+<p><b>Берёшь когда:</b> нужно много итераций быстро, эстетичные «художественные» шоты.</p>
+</div>
+
+<div class="card">
+<h3>Pika 2.x · Hailuo 02</h3>
+<span class="price-pill">~$10-58 · ~$10-30</span>
+<p><b>Pika</b> — лучший для специальных эффектов (Pikaffects: explode, melt, squish, inflate). <b>Hailuo</b> (MiniMax) — дешёвый и качественный T2V с впечатляющим качеством за свою цену.</p>
+<p><b>Берёшь когда:</b> прикольные эффекты в TikTok-стиле или экономия бюджета.</p>
+</div>
+
+</div>
+
+<h3>Решающая таблица: что выбрать когда</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Задача</th><th>Лучший инструмент</th><th>Почему</th></tr></thead>
+<tbody>
+<tr><td>Cinematic ролик с движением камеры</td><td><b>Higgsfield (DoP)</b></td><td>Только у него точный контроль камеры через 70+ пресетов</td></tr>
+<tr><td>Фотореалистичная сцена</td><td><b>Sora 2 Pro</b></td><td>Детализация выше всех</td></tr>
+<tr><td>Ролик со звуком из коробки</td><td><b>Veo 3.1 / Veo 4</b></td><td>Единственный с нативным синхронным аудио</td></tr>
+<tr><td>Реалистичные лица людей</td><td><b>Kling 2.x</b></td><td>Физика лиц лучшая на рынке</td></tr>
+<tr><td>Talking head / аватар</td><td><b>Higgsfield Speak</b> или <b>HeyGen</b></td><td>HeyGen — для бизнеса, Speak — для cinematic</td></tr>
+<tr><td>Прикольный эффект (взрыв, морфинг)</td><td><b>Pika Effects</b> или <b>Higgsfield Effects</b></td><td>Готовые пресеты в один клик</td></tr>
+<tr><td>Правка существующего видео</td><td><b>Runway Aleph</b></td><td>Лучший toolset для V2V</td></tr>
+<tr><td>Быстрая итерация / много экспериментов</td><td><b>Luma Ray</b></td><td>Скорость генерации выше</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="avatars"><span class="num">05</span>AI-аватары — 3 кита</h2>
+
+<div class="note">
+Для разных задач — разные инструменты. <b>HeyGen</b> для бизнес-видео и UGC. <b>Synthesia</b> для корп-обучения. <b>Higgsfield Soul ID</b> для cinematic-аватара в киношных сценах.
+</div>
+
+<div class="cards-grid">
+<div class="card">
+<h3>HeyGen</h3>
+<span class="price-pill">Free · Creator $24 (год) / $29 · Pro $99 · Business $149</span>
+<p>Лидер для бизнес-аватаров. <b>Лип-синк на 175+ языков</b> (включая русский), instant avatar за 2 минуты по селфи-видео, custom digital twins, voice cloning, 4K на Pro.</p>
+<p><b>Для чего:</b> вебинары, лендинги, talking head в Reels, продажи в DM, обучение.</p>
+</div>
+
+<div class="card">
+<h3>Synthesia</h3>
+<span class="price-pill">Free · Starter $18 (год) / $29 · Creator $64 / $89</span>
+<p>Корпоративный стандарт для обучения. 230+ stock-аватаров, <b>160+ языков</b>, готовые шаблоны под HR / обучение / SOP, AI dubbing. Personal avatar даже на Starter.</p>
+<p><b>Для чего:</b> онбординг сотрудников, обучающие видео, SOP, корп-коммуникации.</p>
+</div>
+
+<div class="card">
+<h3>Higgsfield Soul ID + Speak</h3>
+<span class="price-pill">Pro $17.40-29 / мес (Soul ID и Speak включены)</span>
+<p>Не просто аватар — полноценный персонаж в любой cinematic-сцене. 15 фото → 5 минут тренировки → лицо консистентно играет в любых ракурсах. Speak делает talking head на 70+ языках.</p>
+<p><b>Для чего:</b> авторские короткометражки, виральные ролики «я в космосе», cinematic портреты.</p>
+</div>
+
+<div class="card">
+<h3>Hedra Character-3 · Captions AI</h3>
+<span class="price-pill">~$10-30 / мес · ~$10-50 / мес</span>
+<p><b>Hedra</b> — лучший лип-синк с эмоциями (для anime / cartoon, мультяшных персонажей). <b>Captions</b> — UGC-формат для TikTok-стиля с готовыми пресетами движений.</p>
+<p><b>Для чего:</b> когда нужны эмоции в talking head или короткие UGC-форматы.</p>
+</div>
+</div>
+
+<h3>Что выбрать тебе</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Задача</th><th>Аватар</th><th>Почему</th></tr></thead>
+<tbody>
+<tr><td>Talking head для вебинаров и подкаста</td><td><b>HeyGen Creator ($24)</b></td><td>Качество для русского языка + быстро + voice cloning</td></tr>
+<tr><td>Обучающие видео для команды АССИСТ+</td><td><b>Synthesia Starter ($18 год)</b></td><td>Шаблоны под обучение, дёшево</td></tr>
+<tr><td>Cinematic-ролик «я в фильме»</td><td><b>Higgsfield Soul ID</b></td><td>Только он держит лицо в кино-сценах</td></tr>
+<tr><td>UGC-ролик в TikTok-стиле</td><td><b>HeyGen instant avatar</b></td><td>Снимает за 2 мин по селфи</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="pipeline"><span class="num">06</span>Пайплайн виралки — 5 шагов</h2>
+
+<div class="note">
+Идея → Картинка → Видео → Звук → Монтаж. <b>Первый ролик 15 сек = 3-4 часа</b>. Через месяц — 1 час.
+</div>
+
+<div class="pipeline">
+<div class="pipeline-step">
+<div class="step-n">01</div>
+<h4>Идея</h4>
+<div class="tool">Промпт + раскадровка по 3-5 кадров. ChatGPT / Claude.</div>
+<span class="time">15-30 мин</span>
+</div>
+<div class="pipeline-step">
+<div class="step-n">02</div>
+<h4>Картинка</h4>
+<div class="tool">Генерация 3-5 ключевых кадров. Midjourney V7 / Flux Pro.</div>
+<span class="time">30-60 мин</span>
+</div>
+<div class="pipeline-step">
+<div class="step-n">03</div>
+<h4>Видео</h4>
+<div class="tool">I2V, 5-10 сек на кадр. Higgsfield (Soul + DoP).</div>
+<span class="time">1-2 часа</span>
+</div>
+<div class="pipeline-step">
+<div class="step-n">04</div>
+<h4>Звук</h4>
+<div class="tool">Озвучка / голос + музыка. ElevenLabs + Suno.</div>
+<span class="time">30 мин</span>
+</div>
+<div class="pipeline-step">
+<div class="step-n">05</div>
+<h4>Монтаж</h4>
+<div class="tool">Склейка, субтитры, цветокор. CapCut Pro.</div>
+<span class="time">30-60 мин</span>
+</div>
+</div>
+
+<div class="tip">
+<b>Лайфхак новичка:</b> первые 5 роликов делай только text-to-video (один шаг — Higgsfield). Image-to-video пайплайн добавляй после, когда появится насмотренность.
+</div>
+
+<h2 id="price"><span class="num">07</span>Сколько стоит ролик</h2>
+
+<div class="note">
+Базовый AI-ролик можно сделать за <b>$15-50 / мес подписки + 2-4 часа времени</b>. Профессиональный CGI стоит <b>$2-5K на фрилансере</b>, бренд-ролик уровня TV — от <b>$25-100K</b>.
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Уровень</th><th>Что внутри</th><th>Стоимость подписок</th><th>Время</th><th>У фрилансера</th></tr></thead>
+<tbody>
+<tr><td><b>$ Базовый</b></td><td>5-15 сек, T2V, без аудио, 1 сцена</td><td>$19-39 / мес (1-2 инструмента)</td><td>1-3 часа</td><td>$12-100 (Fiverr / Upwork entry)</td></tr>
+<tr><td><b>$$ Средний</b></td><td>15-30 сек, I2V пайплайн, аудио, 2-3 сцены</td><td>$60-120 / мес (3-4 инструмента)</td><td>4-8 часов</td><td>$150-500 (Top Seller, 2 дня)</td></tr>
+<tr><td><b>$$$ Pro</b></td><td>30-60 сек CGI, кинокамера, синхронный звук, custom-аватары</td><td>$150-300 / мес (топ-планы)</td><td>10-20 часов</td><td>$500-2 000+ (Upwork hourly $50-150 / час)</td></tr>
+<tr><td><b>$$$$ Бренд</b></td><td>Реклама 30-90 сек уровня TV, синхронизация с актёром, complex scenes</td><td>$300-500 / мес + студия</td><td>40-80 часов команды</td><td>$2K-100K (студии Native Foreign / Genre.ai)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="warn">
+<b>Кейс для понимания цен:</b> <b>Kalshi NBA Finals 2025</b> от Genre.ai (PJ Ace) сделан <b>за $2 000 production</b>. Традиционная TVC такого охвата стоила бы $500 000+. Маржа AI-агентств = <b>20-50× от прежних рекламных бюджетов</b>. Большинство задач решается в $$ или $$$ диапазоне.
+</div>
+
+<div class="tip">
+<b>Реалистичные ставки AI-фрилансеров на международном рынке (май 2026):</b>
+<ul>
+<li>Entry-level talking head на stock-аватаре (15-30 сек): <b>$12-40</b></li>
+<li>Customized 30-сек ролик: <b>$40-100</b></li>
+<li>Профессиональный 30-90 сек short-form: <b>$150-500</b> (delivery 2 дня)</li>
+<li>Премиум CGI / cinematic 60 сек: <b>$500-2 000+</b></li>
+</ul>
+Платформенные комиссии: Upwork 0-15%, Fiverr 20% flat.
+</div>
+
+<h2 id="setups"><span class="num">08</span>4 готовых сетапа под твои задачи</h2>
+
+<div class="note">
+4 универсальных рецепта под основные сценарии. Состав / цена / время на ролик / референс — всё прозрачно. Стартуй с того, что ближе к текущей задаче.
+</div>
+
+<div class="setup">
+<span class="setup-tag">Сетап 1</span>
+<h3>Виральный CGI / slop для TikTok-Reels</h3>
+<div class="stack-row"><b>Стек:</b> Higgsfield Pro ($17.40 год / $29 мес) + ElevenLabs Starter ($5) + CapCut Pro ($8) <b>= $30-42 / мес</b></div>
+<div class="setup-meta">
+<div class="meta-item"><span class="meta-label">Формат</span><span class="meta-value">9:16 · 9-15 сек</span></div>
+<div class="meta-item"><span class="meta-label">Время на ролик</span><span class="meta-value">2-3 ч → 30 мин</span></div>
+<div class="meta-item"><span class="meta-label">Референс</span><span class="meta-value">PJ Ace · Min Choi</span></div>
+</div>
+<h4>3 шага «как сделать первый»</h4>
+<ol>
+<li>В Higgsfield: выбираешь Effects-пресет «explode» / «3D Rotation» / «giant person» → загружаешь фото → 5 сек ролика</li>
+<li>В CapCut: субтитры на CGI-эффект, музыка из stock-библиотеки или трендовый звук</li>
+<li>Постишь в Reels / TikTok с трендовым звуком сверху</li>
+</ol>
+<p class="dim"><b>Реальный кейс:</b> The Dor Brothers — ролик APEX набрал 20M просмотров за 48 часов, обсуждался у Joe Rogan.</p>
+</div>
+
+<div class="setup">
+<span class="setup-tag">Сетап 2</span>
+<h3>Рекламный ролик для проектов (Клиника · Зачётка · Бизнес-клуб)</h3>
+<div class="stack-row"><b>Стек:</b> HeyGen Creator ($24 год) + Higgsfield Pro ($17-29) + ElevenLabs Creator ($11-22) + CapCut Pro ($8) <b>= $60-83 / мес</b></div>
+<div class="setup-meta">
+<div class="meta-item"><span class="meta-label">Формат</span><span class="meta-value">30-60 сек · 9:16 / 16:9</span></div>
+<div class="meta-item"><span class="meta-label">Время на ролик</span><span class="meta-value">4-6 ч → 1-2 ч</span></div>
+<div class="meta-item"><span class="meta-label">Эффективность</span><span class="meta-value">Kalshi $2K → 50M</span></div>
+</div>
+<p><b>Структура ролика:</b> AI-аватар говорит проблему → b-roll с CGI «как было плохо» → b-roll с решением → CTA.</p>
+<h4>Пример для Клиники «Здоровье»</h4>
+<ol>
+<li>HeyGen: создаёшь аватар врача на основе фото из клиники, скрипт про менопаузу (на русском)</li>
+<li>Higgsfield: 3-4 b-roll сцены (женщина в кабинете, заботливый врач, счастливая пациентка)</li>
+<li>ElevenLabs: озвучка тёплым женским голосом для voice-over (Russian voice support)</li>
+<li>CapCut: монтаж + лого клиники + CTA-плашка «записаться»</li>
+</ol>
+</div>
+
+<div class="setup">
+<span class="setup-tag">Сетап 3</span>
+<h3>AI-аватар Никиты для вебинаров и контента</h3>
+<div class="stack-row"><b>Стек:</b> Higgsfield Pro ($17-29, Soul ID + Speak включены) + HeyGen Creator ($24) + ElevenLabs Creator ($11-22) <b>= $52-75 / мес</b></div>
+<div class="setup-meta">
+<div class="meta-item"><span class="meta-label">Что получишь</span><span class="meta-value">2 аватара</span></div>
+<div class="meta-item"><span class="meta-label">Время на тренировку</span><span class="meta-value">~1 час всего</span></div>
+<div class="meta-item"><span class="meta-label">Время на 1 ролик</span><span class="meta-value">30-60 мин</span></div>
+</div>
+<h4>3 шага «как сделать первый»</h4>
+<ol>
+<li>HeyGen: запиши на телефон 2 минуты лица (анфас, ровный свет, говори любой текст), загрузи. Через 30 мин аватар готов</li>
+<li>Higgsfield Soul ID: загрузи 10-20 разных селфи (разные ракурсы, освещение, минимум 1 в полный рост). Тренировка ~3 минуты</li>
+<li>ElevenLabs Voice Clone (Creator план): запиши 5 минут своего голоса. Получишь синтезированный голос Никиты</li>
+</ol>
+<p class="dim"><b>Use case:</b> AI-аватар читает твои посты в Telegram твоим голосом, ведёт вебинар когда тебе некогда, записывает лекции для УрФУ Бизнес Клуба, делает короткие face-camera видео для Reels.</p>
+</div>
+
+<div class="setup">
+<span class="setup-tag">Сетап 4</span>
+<h3>Кинематографичная короткометражка (1-3 мин)</h3>
+<div class="stack-row"><b>Стек:</b> Higgsfield Creator ($49.80 год / $119+ мес) + ChatGPT Pro ($200, Sora 2 Pro) + Midjourney Standard ($24-30) + ElevenLabs Pro ($99) + Suno Pro ($8-10) <b>= $381-458 / мес</b></div>
+<div class="setup-meta">
+<div class="meta-item"><span class="meta-label">Уровень</span><span class="meta-value">Профи</span></div>
+<div class="meta-item"><span class="meta-label">Время на 2 мин</span><span class="meta-value">30-60 часов</span></div>
+<div class="meta-item"><span class="meta-label">Конкурс</span><span class="meta-value">Curious Refuge $10K</span></div>
+</div>
+<p><b>Берёшь только если</b> делаешь короткометражку для портфолио или фестивалей. Референс: фильмы Higgsfield на YouTube, Echo Hunter (Kavan Cardoza, первый AI-фильм одобренный SAG-AFTRA), студенческие работы Curious Refuge.</p>
+<h4>Пайплайн (как профи делают AI-фильмы)</h4>
+<ol>
+<li>Сценарий + раскадровка на 30-50 кадров (Claude / ChatGPT)</li>
+<li>Midjourney V7: каждый кадр отрисован как «концепт-арт» (1-2 фото на сцену)</li>
+<li>Higgsfield (DoP + Soul ID) + Sora 2 / Veo 4: каждый кадр оживает в 5-10 сек клип</li>
+<li>ElevenLabs: озвучка персонажей + voice-over (можно клонировать любой голос)</li>
+<li>Suno Pro: оригинальный саундтрек</li>
+<li>DaVinci Resolve / CapCut Pro: финальный монтаж + цветокор</li>
+</ol>
+</div>
+
+<h2 id="trends"><span class="num">09</span>Тренды и кейсы</h2>
+
+<div class="note">
+4 главных тренда. Деньги уже идут — крупные бренды делают AI-рекламу, инфлюенсеры с миллионами фолловеров не существуют физически, slop-фермы делают $10K+/мес на TikTok.
+</div>
+
+<h3>AI slop — массовый виральный контент</h3>
+<p>Слой AI-роликов в TikTok / Reels / Facebook: котики-астронавты, странные эксперименты, «факты которые ты не знал». Низкое качество, но огромные охваты. Slop-аккаунты делают <b>$5-30K / мес</b> через TikTok Creator Rewards и аффилиаты ($25 / конверсия). Один faceless-видосик на 100K просмотров с AI-аффилиатом = <b>$500-2 500 за один upload</b>. Делается на Hailuo / Pika / Higgsfield Effects за час в день.</p>
+
+<h3>Cinematic CGI шоты</h3>
+<p>Виральные ролики уровня Hollywood, 5-15 сек, обычно один трюк («гигантский кот в Walmart», «человек проходит сквозь стену»). Топ-креаторы: PJ Ace (десятки миллионов на ролик), Heather Cooper, Pierrick Chevallier, The Dor Brothers. Главный инструмент — <b>Higgsfield</b>.</p>
+
+<h3>AI commercials — реклама уровня TV (с реальными цифрами)</h3>
+<ul>
+<li><b>Toys R Us «The Origin Story»</b> (Sora, июнь 2024) — первая публичная реклама на Sora от студии Native Foreign. Десятки тысяч долларов и недели работы — потолок AI-only продакшена</li>
+<li><b>Coca-Cola Holiday 2024</b> — <b>70 000 AI-клипов</b> сгенерировано, команда 100 человек (Secret Level + Silverside AI + Wild Card). CMO Manolo Arroyo: «таймлайн с года до месяца»</li>
+<li><b>Kalshi NBA Finals 2025</b> (PJ Ace / Genre.ai) — <b>бюджет $2 000, 50M+ просмотров</b>. Кейс эффективности AI vs обычной TVC за $500K+. История, после которой все начали верить в маржу AI-агентств 20-50×</li>
+<li><b>Mango</b> (фастфэшн) — AI-модели полностью заменили живых моделей в кампаниях 2024-2025</li>
+<li><b>Genre.ai (PJ Ace) клиенты 2026:</b> Oracle, Popeyes, Qatar Airlines + Hollywood-студии</li>
+</ul>
+
+<h3>AI-инфлюенсеры — рынок $8.3B в 2026</h3>
+<ul>
+<li><b>Lil Miquela</b> — 2.5M IG, $11M career earnings. Brand deals: Prada, Calvin Klein, Samsung. До $100K+ / мес</li>
+<li><b>Imma Gram</b> (ModelingCafe, Tokyo) — 400K+ IG, <b>$1-3M / год</b>. Brand deals: IKEA, Porsche, Dior, Valentino, Off-White, Puma. Per-campaign $50-150K</li>
+<li><b>Aitana López</b> (Barcelona, The Clueless agency) — 149K IG, $9-11K / мес. Brand deals: Amazon, Razer, Freepik</li>
+<li><b>Lu do Magalu</b> (Brazil, Magazine Luiza) — $2.5M / год, <b>$180M attributed e-commerce sales</b> через AI-shopping ассистент</li>
+</ul>
+<p><b>Перспектива:</b> 58% потребителей следят минимум за одним AI-инфлюенсером. Любой бренд может себе создать виртуального амбассадора за месяц работы.</p>
+
+<h2 id="learn"><span class="num">10</span>Где учиться</h2>
+
+<div class="note">
+2-3 недели практики — базовый уровень. 2-3 месяца — Pro. <b>Главное: делай свои ролики каждый день</b>, теория без практики бесполезна.
+</div>
+
+<h3>YouTube-каналы (бесплатно)</h3>
+<div class="people-list">
+<div class="people-row"><div class="name">Matt Wolfe · @mreflow</div><div class="desc">~700K. Ежедневные обзоры AI-инструментов и новостей. Co-founder Future Tools.</div></div>
+<div class="people-row"><div class="name">Bilawal Sidhu</div><div class="desc">1.3M+, 500M+ просмотров. Куратор TED, venture scout у a16z. Лучшие глубокие разборы.</div></div>
+<div class="people-row"><div class="name">Two Minute Papers</div><div class="desc">1.76M. Разбирает AI-research papers по видеогенерации в течение дней после публикации.</div></div>
+<div class="people-row"><div class="name">Theoretically Media · Tim Simmons</div><div class="desc">Глубокие туториалы по AI-инструментам для филммейкеров.</div></div>
+<div class="people-row"><div class="name">The AI Grid</div><div class="desc">374K. Демонстрации новых AI-tools, in-depth, регулярные обновления.</div></div>
+<div class="people-row"><div class="name">Curious Refuge</div><div class="desc">Официальный YouTube главного курса по AI-фильмейкингу.</div></div>
+</div>
+
+<h3>Платные курсы</h3>
+<ul>
+<li><b>Curious Refuge AI Filmmaking</b> — <b>$300 за курс</b>, бандлы экономят $1 000+. Discord-сообщество с режиссёрами уровня Academy Award winners. <a href="https://curiousrefuge.com/ai-filmmaking">curiousrefuge.com/ai-filmmaking</a></li>
+<li><b>Curious Refuge Advanced AI Filmmaking</b> — продвинутый трек. Скидки 2-3 недели до старта</li>
+<li><b>Free intro course</b> от Curious Refuge — бесплатный, для оценки качества</li>
+<li><b>Domestika / Skillshare AI-курсы</b> — $14-25 / мес подписка, набор отдельных курсов разного уровня</li>
+</ul>
+
+<h3>Discord-сообщества</h3>
+<ul>
+<li><b>Curious Refuge Discord</b> — крупнейшее международное AI-filmmaking сообщество (доступ через курсы)</li>
+<li><b>Banodoco Discord</b> — техническое сообщество AI-видеогенерации, открытое</li>
+<li><b>Higgsfield Discord</b> — официальный, разборы кейсов и помощь по моделям</li>
+<li><b>Runway Discord</b> — для пользователей Runway</li>
+</ul>
+
+<h3>Кого читать в X / Twitter</h3>
+<ul>
+<li><b>Креаторы:</b> @PJaccetturo, @HBCoop_, @CharaspowerAI, @minchoi, @bilawalsidhu</li>
+<li><b>Компании:</b> @higgsfield_ai, @runwayml, @LumaLabs, @pika_labs, @hailuoai</li>
+</ul>
+
+<div class="tip">
+X / Twitter — лучше любого Discord для weak-signal-detection. Активный feed = быть в курсе всех новых моделей и фишек на день вперёд других.
+</div>
+
+<h3>Сколько времени нужно</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Уровень</th><th>Срок</th><th>Что умеешь</th></tr></thead>
+<tbody>
+<tr><td><b>Старт</b></td><td>1 неделя</td><td>Сделать первый рабочий ролик 5-10 сек на Higgsfield</td></tr>
+<tr><td><b>База</b></td><td>2-4 недели практики</td><td>Виральный 15-сек CGI на уровне «прилично»</td></tr>
+<tr><td><b>Pro</b></td><td>2-3 месяца ежедневной работы</td><td>Полные пайплайны, рекламные ролики, короткометражки</td></tr>
+<tr><td><b>Senior</b></td><td>6-12 месяцев</td><td>Уровень PJ Ace / Curious Refuge — продакшн фильмов</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="checklist"><span class="num">11</span>Чек-лист первой недели</h2>
+
+<div class="note">
+Семидневный план, чтобы за неделю выйти от нуля до собственного первого ролика. Не более 1-2 часов в день.
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>День</th><th>Действие</th><th>Результат</th></tr></thead>
+<tbody>
+<tr><td><b>День 1</b></td><td>Регистрация: Higgsfield Free + ChatGPT Plus + Midjourney Basic. Поиграться 1 час с Higgsfield</td><td>Понимаешь интерфейс Higgsfield, сделал 5 тестовых роликов</td></tr>
+<tr><td><b>День 2</b></td><td>Смотри 3 туториала Curious Refuge и 5 разборов от PJ Ace. Заведи блокнот идей</td><td>Понимаешь как профи делают ролики, есть 10 идей</td></tr>
+<tr><td><b>День 3</b></td><td>Апгрейд Higgsfield до Pro. Сделай первый ролик 5 сек по чёткой задумке. Пробуй Effects</td><td>Первый ролик готов. Понимаешь как работает image-to-video</td></tr>
+<tr><td><b>День 4</b></td><td>Подключи ElevenLabs (Free → Starter если нужно). Озвучь свой ролик</td><td>Ролик со звуком</td></tr>
+<tr><td><b>День 5</b></td><td>Сделай Soul ID — свой персональный аватар. 15 фото → тренировка ~3-5 мин</td><td>Твой аватар готов, ты появляешься в роликах</td></tr>
+<tr><td><b>День 6</b></td><td>Установи CapCut Pro. Смонтируй 9-15 сек ролик с субтитрами под TikTok</td><td>Готовый ролик для соцсетей</td></tr>
+<tr><td><b>День 7</b></td><td>Запости. Получи первую обратную связь. Запланируй ролики на неделю вперёд</td><td>Запущенный канал. Ты — AI-креатор</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tip">
+<b>Главное правило:</b> делай ролики каждый день, даже плохие. <b>Качество приходит из количества</b>. Первые 20 роликов будут так себе — это нормально. С 21-го пойдёт прогресс.
+</div>
+
+<footer>
+<h3>Источники для самостоятельной верификации</h3>
+<ul>
+<li><b>Higgsfield:</b> <a href="https://higgsfield.ai/pricing">higgsfield.ai/pricing</a></li>
+<li><b>ChatGPT (Sora 2):</b> <a href="https://chatgpt.com/pricing">chatgpt.com/pricing</a></li>
+<li><b>Google AI (Veo):</b> <a href="https://gemini.google/subscriptions/">gemini.google/subscriptions</a></li>
+<li><b>Runway:</b> <a href="https://runwayml.com/pricing">runwayml.com/pricing</a></li>
+<li><b>Kling:</b> <a href="https://kling.ai/app/membership/membership-plan">kling.ai</a></li>
+<li><b>Luma Dream Machine:</b> <a href="https://lumalabs.ai/pricing">lumalabs.ai/pricing</a></li>
+<li><b>Pika:</b> <a href="https://pika.art/pricing">pika.art/pricing</a></li>
+<li><b>Hailuo (MiniMax):</b> <a href="https://hailuoai.video/subscribe">hailuoai.video</a></li>
+<li><b>HeyGen:</b> <a href="https://www.heygen.com/pricing">heygen.com/pricing</a></li>
+<li><b>Synthesia:</b> <a href="https://www.synthesia.io/pricing">synthesia.io/pricing</a></li>
+<li><b>D-ID:</b> <a href="https://www.d-id.com/pricing/studio/">d-id.com/pricing/studio</a></li>
+<li><b>Hedra:</b> <a href="https://www.hedra.com/pricing">hedra.com/pricing</a></li>
+<li><b>Captions:</b> <a href="https://captions.ai/pricing">captions.ai/pricing</a></li>
+<li><b>Midjourney:</b> <a href="https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans">docs.midjourney.com</a></li>
+<li><b>ElevenLabs:</b> <a href="https://elevenlabs.io/pricing">elevenlabs.io/pricing</a></li>
+<li><b>Suno:</b> <a href="https://suno.com/pricing">suno.com/pricing</a></li>
+<li><b>Curious Refuge:</b> <a href="https://curiousrefuge.com/ai-filmmaking">curiousrefuge.com/ai-filmmaking</a></li>
+</ul>
+
+<h3>Кейсы и финансовые данные</h3>
+<ul>
+<li>Higgsfield $1.3B оценка (TechCrunch): <a href="https://techcrunch.com/2026/01/15/ai-video-startup-higgsfield-founded-by-ex-snap-exec-lands-1-3b-valuation/">techcrunch.com</a></li>
+<li>Sora app discontinuation: <a href="https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation">help.openai.com</a></li>
+<li>Toys R Us / Sora кейс: <a href="https://venturebeat.com/ai/toys-r-us-unveils-first-commercial-made-with-openais-sora">venturebeat.com</a></li>
+<li>Coca-Cola Holiday AI кейс: <a href="https://www.hollywoodreporter.com/business/digital/coke-new-ai-holiday-ad-video-1236416491/">hollywoodreporter.com</a></li>
+<li>PJ Ace / Genre.ai: <a href="https://themediabrain.substack.com/p/advertisings-top-ai-disruptor-pj-161">themediabrain.substack.com</a></li>
+<li>Promise (a16z): <a href="https://variety.com/2024/digital/news/promise-gen-ai-studio-funding-peter-chernin-andreessen-horowitz-1236214333/">variety.com</a></li>
+</ul>
+
+<div class="meta-row">
+<div><b>Дата документа:</b> 10 мая 2026</div>
+<div><b>Версия:</b> 2.0 · Дизайн Humble</div>
+<div><b>Источник стиля:</b> Precise White Lab — Bricolage Grotesque + Geist</div>
+</div>
+
+<p style="margin-top:20px;font-size:13px;line-height:1.5;">Цены подвижны и меняются часто (Higgsfield рестрактил тарифы 4 раза с апреля 2025). Перед оплатой — проверь актуальную сетку на официальной pricing-странице. Документ — снимок на конкретную дату, не догма. Главное — общая структура рынка и логика выбора инструмента, конкретные суммы могут немного отличаться.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>План: ИИ-ролики для маркетинга AI-направления</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canvas: #fafafa;
+  --obsidian: #1c1c1c;
+  --granite: #6e6e6e;
+  --ink: #000000;
+  --ghost: #f1f1f1;
+  --alabaster: #ecebe8;
+  --orange: #ff4000;
+  --shadow-card:
+    rgba(0,0,0,0.03) 0 .7px .7px -.4px,
+    rgba(0,0,0,0.03) 0 1.8px 1.8px -.8px,
+    rgba(0,0,0,0.03) 0 3.6px 3.6px -1.25px,
+    rgba(0,0,0,0.03) 0 6.9px 6.9px -1.7px,
+    rgba(0,0,0,0.03) 0 13.6px 13.6px -2.1px,
+    rgba(0,0,0,0.03) 0 30px 30px -2.5px;
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--canvas);
+  color: var(--obsidian);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+/* HERO */
+.hero { margin-bottom: 64px; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(38px, 6vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.052em;
+  color: var(--obsidian);
+  margin-bottom: 20px;
+}
+.hero .lede {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--granite);
+  letter-spacing: -0.04px;
+  max-width: 640px;
+}
+
+/* META CHIPS */
+.meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--alabaster);
+  color: var(--obsidian);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 100px;
+  letter-spacing: -0.007px;
+}
+.chip .chip-key {
+  color: var(--granite);
+  font-weight: 400;
+}
+.chip.accent {
+  background: transparent;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
+/* SECTIONS */
+.section { margin-top: 64px; }
+.section > h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--obsidian);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.section > h2::before {
+  content: counter(section, decimal-leading-zero);
+  counter-increment: section;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  align-self: center;
+}
+body { counter-reset: section; }
+
+/* CARD */
+.card {
+  background: var(--canvas);
+  border-radius: 30px;
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 16px;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--obsidian);
+  margin-bottom: 16px;
+}
+.card h3 + p,
+.card h3 + ul,
+.card h3 + ol { margin-top: 12px; }
+.card p + p { margin-top: 10px; }
+
+/* CALLOUT */
+.callout {
+  background: var(--alabaster);
+  border-radius: 24px;
+  padding: 24px 28px;
+  margin: 16px 0;
+  font-size: 15px;
+  color: var(--obsidian);
+  line-height: 1.5;
+}
+.callout strong { color: var(--obsidian); }
+.callout p + p { margin-top: 8px; }
+
+/* TYPOGRAPHY */
+p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--obsidian);
+  letter-spacing: -0.02px;
+  margin-bottom: 12px;
+}
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 600; color: var(--obsidian); }
+em { font-style: italic; color: var(--granite); }
+
+a {
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+a:hover { border-bottom-color: var(--orange); }
+
+/* LISTS */
+ul, ol {
+  margin: 8px 0 16px;
+  padding-left: 22px;
+}
+li {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--obsidian);
+  margin-bottom: 6px;
+  letter-spacing: -0.02px;
+}
+ul li::marker { color: var(--granite); }
+ol.accent-numbers li::marker { color: var(--orange); font-weight: 600; }
+
+/* CHECKLIST */
+ul.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+ul.checklist li {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 10px;
+}
+ul.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--granite);
+  background: var(--canvas);
+}
+ul.checklist li.done::before {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+ul.checklist li.done::after {
+  content: '';
+  position: absolute;
+  left: 5px; top: 8px;
+  width: 8px; height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* BLOCKQUOTE */
+blockquote {
+  border-left: 3px solid var(--orange);
+  padding: 6px 0 6px 18px;
+  margin: 16px 0;
+  color: var(--granite);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* TABLE */
+.table-wrap {
+  overflow-x: auto;
+  margin: 8px 0;
+  border-radius: 16px;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--canvas);
+}
+.data-table th, .data-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ghost);
+  letter-spacing: -0.007px;
+  vertical-align: top;
+}
+.data-table th {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  color: var(--granite);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--ghost);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table strong { color: var(--obsidian); }
+
+/* CODE */
+code {
+  font-family: var(--font-mono);
+  background: var(--ghost);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  color: var(--obsidian);
+}
+pre {
+  background: var(--ghost);
+  border-radius: 16px;
+  padding: 20px 22px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* HR */
+hr {
+  border: none;
+  height: 1px;
+  background: var(--ghost);
+  margin: 32px 0;
+}
+
+/* FOOTER */
+.page-footer {
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ghost);
+  font-size: 12px;
+  color: var(--granite);
+  text-align: center;
+  letter-spacing: -0.007px;
+}
+.page-footer .accent-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  main { padding: 40px 16px 64px; }
+  .card { padding: 24px; border-radius: 24px; }
+  .section > h2 { font-size: 26px; }
+  .hero h1 { font-size: 38px; letter-spacing: -0.04em; }
+  .data-table th, .data-table td { padding: 10px 10px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <h1>План: ИИ-ролики для маркетинга AI-направления</h1>
+    <p class="lede">Глобальная цель — создать новый источник лидов через Instagram и рост Telegram-канала. Освоить генерацию ИИ-видео и потенциально превратить в новое направление.</p>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-key">Дата:</span> 10 мая 2026</span>
+      <span class="chip"><span class="chip-key">Горизонт:</span> неделя 11–17 мая 2026</span>
+      <span class="chip"><span class="chip-key">Ответственный:</span> Никита Чукреев</span>
+      <span class="chip accent">Активная задача недели</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Глобальная цель</h2>
+    <div class="card">
+      <p>Создать <strong>новый источник лидов</strong>, не связанный с сарафанным радио. Это первый и ключевой ориентир — всё остальное (метрики, формат, аватар) подчинено этой цели.</p>
+    </div>
+    <div class="card">
+      <h3>Что считаем успехом на длинной дистанции</h3>
+      <ul>
+        <li>Реальные заявки с Instagram (не только лайки/просмотры)</li>
+        <li>Рост Telegram-канала за счёт переходов из Instagram</li>
+        <li>Освоенная компетенция «генерация ИИ-видео» — используем сами + потенциально продаём как новое направление</li>
+        <li>Возможный сайд-эффект: ИИ-картинки и ИИ-видео под заказ как отдельный продукт</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <strong>Логика воронки (как видим сейчас):</strong>
+      <p>Reels в Instagram → CTA в комментарии / переход в Telegram → лид → продажа (агенты, скрипты, AI-консультации).</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Цель на эту неделю (11–17 мая 2026)</h2>
+    <div class="callout">
+      <strong>Главное правило недели:</strong> разобраться, а не масштабировать. Лучше один качественный ролик и понимание процесса, чем три сырых.
+    </div>
+    <div class="card">
+      <h3>Что нужно сделать к воскресенью 17 мая</h3>
+      <ul class="checklist">
+        <li>Создать и оформить Instagram-аккаунт под AI-автоматизацию</li>
+        <li>Пройти минимум <strong>3 урока</strong> из курса по генерации видео (4-й — опционально на выходных)</li>
+        <li>Создать <strong>ИИ-аватара</strong> (лицо бренда канала)</li>
+        <li>Выложить <strong>1 ролик</strong> в Instagram (один, не больше — фокус на качестве)</li>
+        <li>Понять стоимость одной картинки/одного видео — это влияет на дальнейшую модель</li>
+        <li>Протестировать генерацию ИИ-картинок для постов в Telegram (цель — 50% картинок генерить самим)</li>
+      </ul>
+      <p style="margin-top:16px;color:var(--granite);font-size:14px;"><strong>Важно:</strong> один ролик — это сознательный выбор. Сначала разбираемся в инструменте, аватаре, формате — потом масштабируемся.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>ИИ-аватар (центральный элемент)</h2>
+    <div class="card">
+      <p>Аватар — это <strong>лицо бренда канала</strong>. По аналогии с Higgsfield, у которого есть свой узнаваемый человечек-аватар.</p>
+    </div>
+    <div class="card">
+      <h3>Принципы</h3>
+      <ul>
+        <li>Аватар <strong>не связан</strong> с Никитой, не связан с Антоном, не связан ни с кем из команды. Это отдельная сущность.</li>
+        <li>Один и тот же аватар во всех роликах → узнаваемость канала.</li>
+        <li>Адаптируем логику Higgsfield под себя.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Два варианта (выбор по итогам тестов)</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Вариант</th><th>Описание</th><th>Когда выбираем</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>A. Реалистичный человек</strong></td>
+              <td>Максимально реалистичный человеческий аватар</td>
+              <td>Только если удастся сделать качественно — без эффекта «зловещей долины»</td>
+            </tr>
+            <tr>
+              <td><strong>B. Абстрактная фигура</strong></td>
+              <td>Скелет, человек-матрица, стилизованный персонаж</td>
+              <td>Если реализм не вытянем — это безопаснее, аудитория такое лучше воспринимает</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Риск варианта A — эффект «зловещей долины» (uncanny valley):</strong>
+      <p>аудитория интуитивно отторгает «почти-человека». Если реалистичность хромает — сразу уходим в вариант B, не пытаемся «дотянуть».</p>
+      <p><em>Решение принимаем по факту первых тестов генерации.</em></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Формат и логика роликов</h2>
+    <div class="card">
+      <h3>Идеи рубрик на тест</h3>
+      <p style="color:var(--granite);font-size:14px;margin-bottom:12px;">Выберем по реакции аудитории.</p>
+      <ul>
+        <li>🤖 «А вы знали, что умеет Claude?» — фишки, неочевидные сценарии</li>
+        <li>⚡ «Сделай X быстро через AI» — практические лайфхаки</li>
+        <li>📰 Новости из мира IT/AI — короткие сводки с комментарием</li>
+        <li>🛠 Разборы инструментов и связок агентов</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Структура одного ролика (черновая)</h3>
+      <ol class="accent-numbers">
+        <li><strong>Хук</strong> (0–3 сек) — цепляющий заход</li>
+        <li><strong>Польза</strong> (3–25 сек) — суть рубрики, фишка, новость</li>
+        <li><strong>Демо/визуал</strong> — показываем результат</li>
+        <li><strong>CTA</strong> (последние 3–5 сек) — призыв к действию</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Варианты CTA</h3>
+      <ul>
+        <li><em>«Я собрал команду AI-агентов под X — пиши <code>скрипт</code> в комментариях, скину»</em></li>
+        <li><em>«Полная версия новости — у меня в Telegram, ссылка в шапке»</em></li>
+        <li><em>«Хочешь такую же связку — переходи в Telegram»</em></li>
+      </ul>
+    </div>
+    <div class="callout">
+      <strong>Принцип:</strong> каждый ролик ведёт либо в комментарии (где автоответ скриптом / личкой), либо в Telegram-канал.
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>График занятий курса (Higgsfield)</h2>
+    <div class="card">
+      <p>Курс по генерации ИИ-видео — основа недели. На текущей неделе пройдём 3 занятия из 4.</p>
+      <blockquote style="margin-top:12px;">Все времена указаны по <strong>Екатеринбургу (UTC+5, МСК+2)</strong>.</blockquote>
+      <div class="table-wrap" style="margin-top:16px;">
+        <table class="data-table">
+          <thead>
+            <tr><th>День</th><th>Время (ЕКБ)</th><th>Занятие</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Среда 13 мая</strong></td><td>20:00</td><td>Занятие 1</td></tr>
+            <tr><td><strong>Четверг 14 мая</strong></td><td>18:00</td><td>Занятие 2</td></tr>
+            <tr><td><strong>Пятница 15 мая</strong></td><td>12:00</td><td>Занятие 3</td></tr>
+            <tr><td>Суббота / воскресенье</td><td>—</td><td>Занятие 4 — опционально, не факт что успеем</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Логика:</strong> между занятиями применяем то, что разобрали — параллельно собираем аватар, тестируем генерацию, готовим первый ролик. Конкретное распределение задач по дням не фиксируем — двигаемся по факту прогресса на занятиях.
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Бюджет и экономика</h2>
+    <div class="callout">
+      Это критичный блок — без понимания unit-экономики масштабировать нельзя.
+    </div>
+    <div class="card">
+      <h3>Что замеряем на неделе</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Метрика</th><th>Цель замера</th><th>Где фиксируем</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Стоимость 1 ИИ-картинки</td><td>Понять, выгодно ли генерить картинки для TG</td><td>Этот файл, раздел «Замеры»</td></tr>
+            <tr><td>Стоимость 1 ИИ-видео (Reels-длина)</td><td>Понять, потянем ли ежедневный/частый постинг</td><td>Этот файл</td></tr>
+            <tr><td>Время на 1 ролик (от идеи до публикации)</td><td>Оценить трудозатраты</td><td>Этот файл</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Ремарка: что если генерация окажется дорогой</h3>
+      <ul>
+        <li>Либо снижаем долю ИИ (вместо 100% картинок ИИ — 50%)</li>
+        <li>Либо ищем более дешёвые альтернативы инструменту</li>
+        <li>Либо принимаем стоимость как маркетинговую инвестицию (если ROI окупит)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Параллельный трек: ИИ-картинки для Telegram</h2>
+    <div class="card">
+      <p style="color:var(--granite);font-size:14px;">Не основной фокус недели, но идёт параллельно.</p>
+      <h3 style="margin-top:16px;">Цель</h3>
+      <p>К концу недели <strong>50% картинок</strong> в Telegram-постах генерим сами через ИИ (а не берём стоковые / готовые).</p>
+    </div>
+    <div class="card">
+      <h3>Что нужно</h3>
+      <ul>
+        <li>Подобрать рабочий инструмент генерации картинок</li>
+        <li>Зафиксировать стиль (чтобы посты выглядели единообразно)</li>
+        <li>Посчитать стоимость</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <strong>Если выйдет дорого</strong> — снижаем планку до 20–30%, или используем только для ключевых постов.
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Итог недели — чек-лист закрытия</h2>
+    <div class="card">
+      <p style="color:var(--granite);font-size:14px;margin-bottom:16px;">К воскресенью 17 мая должно быть:</p>
+      <ul class="checklist">
+        <li>Instagram-аккаунт зарегистрирован и оформлен</li>
+        <li>Пройдено минимум 3 урока курса</li>
+        <li>Создан финальный ИИ-аватар (вариант A или B — зафиксировано почему)</li>
+        <li>Опубликован 1 ролик в Instagram</li>
+        <li>Известна стоимость 1 картинки и 1 видео (записано в файл)</li>
+        <li>Протестирована генерация картинок для TG, выбран рабочий инструмент</li>
+        <li>Заметки и инсайты по неделе → переносятся в план следующей недели</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Что делаем со следующей недели (превью)</h2>
+    <div class="card">
+      <p style="color:var(--granite);font-size:14px;margin-bottom:12px;">Не планируем сейчас детально, но направление:</p>
+      <ul>
+        <li>Регулярный постинг (2–3 ролика в неделю → потом ежедневно)</li>
+        <li>A/B-тест рубрик: какие набирают больше</li>
+        <li>Замер реальных лидов из CTA</li>
+        <li>Решение по дальнейшему: тянем ли как отдельное направление «AI-видео под заказ»</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Нюансы и риски</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Эффект зловещей долины</strong> — если реализм аватара хромает, не пытаемся доделать, уходим в абстракцию.</li>
+        <li><strong>Стоимость генерации</strong> — может оказаться неподъёмной для регулярного постинга. Считаем заранее.</li>
+        <li><strong>Один ролик за неделю — это нормально.</strong> Цель недели — РАЗОБРАТЬСЯ, а не выпустить максимум контента.</li>
+        <li><strong>Аватар не связан с Никитой и Антоном</strong> — это принципиально, иначе теряется отвязанность личного бренда.</li>
+        <li><strong>Контент-план рубрик — гипотезы.</strong> Финальный набор рубрик определится по реакции аудитории через 4–6 недель регулярного постинга.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Сгенерировано из План_роликов.md <span class="accent-dot"></span> Humble · Precise White Lab
+  </footer>
+
+</main>
+</body>
+</html>

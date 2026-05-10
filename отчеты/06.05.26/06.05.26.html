@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отчёт · 06.05.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#fafafa;--obsidian:#1c1c1c;--granite:#6e6e6e;--ink:#000;--ghost:#f1f1f1;--alabaster:#ecebe8;--orange:#ff4000;--shadow-card:rgba(0,0,0,.03) 0 .7px .7px -.4px,rgba(0,0,0,.03) 0 1.8px 1.8px -.8px,rgba(0,0,0,.03) 0 3.6px 3.6px -1.25px,rgba(0,0,0,.03) 0 6.9px 6.9px -1.7px,rgba(0,0,0,.03) 0 13.6px 13.6px -2.1px,rgba(0,0,0,.03) 0 30px 30px -2.5px;--font-display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;--font-ui:'Inter',ui-sans-serif,system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--canvas);color:var(--obsidian);font-family:var(--font-ui);font-size:16px;line-height:1.4;letter-spacing:-.02px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+main{max-width:920px;margin:0 auto;padding:72px 24px 96px}
+.hero{margin-bottom:64px}
+.hero .eyebrow{font-family:var(--font-ui);font-weight:500;font-size:13px;color:var(--orange);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:block}
+.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(38px,6vw,58px);line-height:1.05;letter-spacing:-.052em;color:var(--obsidian);margin-bottom:20px}
+.hero .lede{font-family:var(--font-ui);font-size:18px;line-height:1.5;color:var(--granite);letter-spacing:-.04px;max-width:640px}
+.meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--alabaster);color:var(--obsidian);font-size:13px;font-weight:500;padding:8px 14px;border-radius:100px;letter-spacing:-.007px}
+.chip .chip-key{color:var(--granite);font-weight:400}
+.chip.accent{background:transparent;color:var(--orange);border:1px solid var(--orange)}
+.section{margin-top:64px}
+.section>h2{font-family:var(--font-display);font-weight:600;font-size:32px;line-height:1.2;letter-spacing:-.02em;color:var(--obsidian);margin-bottom:24px;display:flex;align-items:baseline;gap:16px}
+.section>h2::before{content:counter(section,decimal-leading-zero);counter-increment:section;font-family:var(--font-ui);font-weight:500;font-size:13px;color:var(--orange);letter-spacing:.05em;flex-shrink:0;align-self:center}
+body{counter-reset:section}
+.card{background:var(--canvas);border-radius:30px;padding:32px;box-shadow:var(--shadow-card);margin-bottom:16px}
+.card h3{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.02em;color:var(--obsidian);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.card h3 .avatar{width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:14px;font-weight:600;letter-spacing:0}
+.card h3 .avatar.alt{background:var(--ink)}
+p{font-size:16px;line-height:1.55;color:var(--obsidian);letter-spacing:-.02px;margin-bottom:12px}
+p:last-child{margin-bottom:0}
+strong{font-weight:600;color:var(--obsidian)}
+em{font-style:italic;color:var(--granite)}
+a{color:var(--orange);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s ease}
+a:hover{border-bottom-color:var(--orange)}
+ul,ol{margin:8px 0 16px;padding-left:22px}
+li{font-size:16px;line-height:1.55;color:var(--obsidian);margin-bottom:8px;letter-spacing:-.02px}
+ul li::marker{color:var(--granite)}
+code{font-family:var(--font-mono);background:var(--ghost);padding:2px 8px;border-radius:6px;font-size:.9em;color:var(--obsidian)}
+.page-footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--ghost);font-size:12px;color:var(--granite);text-align:center;letter-spacing:-.007px}
+.page-footer .accent-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange);margin:0 8px;vertical-align:middle}
+@media(max-width:640px){main{padding:40px 16px 64px}.card{padding:24px;border-radius:24px}.section>h2{font-size:26px}.hero h1{font-size:38px;letter-spacing:-.04em}}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <span class="eyebrow">Daily Report</span>
+    <h1>06.05.2026</h1>
+    <p class="lede">Дневной отчёт по AI-направлению. Что сделали Никита и Гоша за день — задачи, прогресс, итоги.</p>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-key">Дата:</span> 6 мая 2026</span>
+      <span class="chip"><span class="chip-key">День недели:</span> среда</span>
+      <span class="chip accent">AI-направление</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Никита</h2>
+    <div class="card">
+      <h3><span class="avatar">Н</span> Что сделано за день</h3>
+      <ul>
+        <li>Дополнил GitHub последними файлами, структурировал папки и документы внутри.</li>
+        <li>Сделал группу с сотрудниками от Александра Зайцева, записал гайд, где найти ID организации, и жду, когда ребята скинут его, чтобы установить подписку.</li>
+        <li>Сделал гайд по Handy, записал ролик на 4 минуты.</li>
+        <li>Сделал PnL-таблицу для учёта финансов по ИИ-проектам.</li>
+        <li>Закрыл мелкие задачи с курсантами (объяснить настройку Claude) и настройку группы курса.</li>
+        <li>Поставил Гоше задачу по созданию канала на парсинге, чтобы адаптировать его под большую аудиторию, взяли в реализацию.</li>
+        <li>Продолжил поиск людей на веб: проводим с Гошей в пятницу в <strong>19:00 МСК</strong>. Сделал рассылку по чатам, но пока заинтересовались только студенты.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Гоша</h2>
+    <div class="card">
+      <h3><span class="avatar alt">Г</span> Что сделано за день</h3>
+      <ul>
+        <li>Сделал отдельный чат для веба по ИИ.</li>
+        <li>Помогает привлекать аудиторию на веб: сделал рассылку по открытым чатам с предпринимателями, через «Поколение» также нашёл несколько человек, кто поделился контактами.</li>
+        <li>По задаче от Никиты начал переделывать бота «Собирай» для создания публичного канала, внёс часть правок, основная работа завтра.</li>
+        <li>Сделал картинку для рекламы веба.</li>
+        <li>Доделывал сторис и посты для Антона.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Сгенерировано из 06.05.26.md <span class="accent-dot"></span> Humble · Precise White Lab
+  </footer>
+
+</main>
+</body>
+</html>
