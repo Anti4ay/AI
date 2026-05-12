@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>План на неделю 27.04 — 03.05.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canvas: #fafafa;
+  --obsidian: #1c1c1c;
+  --granite: #6e6e6e;
+  --ink: #000000;
+  --ghost: #f1f1f1;
+  --alabaster: #ecebe8;
+  --orange: #ff4000;
+  --shadow-card:
+    rgba(0,0,0,0.03) 0 .7px .7px -.4px,
+    rgba(0,0,0,0.03) 0 1.8px 1.8px -.8px,
+    rgba(0,0,0,0.03) 0 3.6px 3.6px -1.25px,
+    rgba(0,0,0,0.03) 0 6.9px 6.9px -1.7px,
+    rgba(0,0,0,0.03) 0 13.6px 13.6px -2.1px,
+    rgba(0,0,0,0.03) 0 30px 30px -2.5px;
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--canvas);
+  color: var(--obsidian);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+.hero { margin-bottom: 64px; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(38px, 6vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.052em;
+  color: var(--obsidian);
+  margin-bottom: 20px;
+}
+
+.meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--alabaster);
+  color: var(--obsidian);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 100px;
+  letter-spacing: -0.007px;
+}
+.chip .chip-key {
+  color: var(--granite);
+  font-weight: 400;
+}
+
+.section { margin-top: 32px; }
+.card {
+  background: var(--canvas);
+  border-radius: 30px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 16px;
+}
+.card h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--obsidian);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.card h2::before {
+  content: counter(section, decimal-leading-zero);
+  counter-increment: section;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+body { counter-reset: section; }
+
+p { font-size: 16px; line-height: 1.55; color: var(--obsidian); margin-bottom: 10px; }
+strong { font-weight: 600; color: var(--obsidian); }
+em { font-style: italic; color: var(--granite); }
+
+ul { margin: 6px 0 0; padding-left: 22px; }
+li { font-size: 15.5px; line-height: 1.55; color: var(--obsidian); margin-bottom: 4px; }
+ul li::marker { color: var(--granite); }
+
+.page-footer {
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ghost);
+  font-size: 12px;
+  color: var(--granite);
+  text-align: center;
+}
+.page-footer .accent-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  main { padding: 40px 16px 64px; }
+  .card { padding: 22px; border-radius: 24px; }
+  .card h2 { font-size: 19px; }
+  .hero h1 { font-size: 38px; letter-spacing: -0.04em; }
+}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <h1>План на неделю 27.04 — 03.05.2026</h1>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-key">Период:</span> 27 апреля — 3 мая 2026</span>
+    </div>
+  </header>
+
+  <div class="section">
+
+    <div class="card">
+      <h2>Пересборка вебинара для аудитории предпринимателей</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Никита</li>
+        <li><strong>Срок:</strong> сегодня до 17:00</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Делаем юридические документы</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Никита</li>
+        <li><strong>Срок:</strong> сегодня до 17:00</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Провести два веба для предпринимателей</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Никита</li>
+        <li><strong>Срок:</strong> 02.05 20:00</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Создать платформу для курса, хранения записей и материалов</h2>
+      <ul>
+        <li><strong>Ответственные:</strong> Никита + Маргарита</li>
+        <li><strong>Срок:</strong> 03.04 — скорее всего чуть подвинем дату, тк разработка не простая, но MVP будет в эту дату</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Подготовить материалы и план презентации для 00 модуля на курсе</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Гоша</li>
+        <li><strong>Срок:</strong> 29.04 20:00</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Создать чат и начать сопровождение клиентов</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Никита</li>
+        <li><strong>Срок:</strong> 30.04 22:00 — примерно, нужно отталкиваться от количества купивших курс</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Провести звонок с Global Dent и продолжить работу с ними</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> команда</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Собрать потребность с предпринимателей</h2>
+      <ul>
+        <li><strong>Ответственные:</strong> Никита + Антон</li>
+        <li><strong>Срок:</strong> 02.05 20:00</li>
+        <li>Ключевая задача — понять, что реально интересно бизнесу. После веба разобраться с этим, сделать рассылку. Опросить людей, кто зайдет на курс. Результат — документ с итогами опроса.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Оцифровка курса Сколково</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Гоша</li>
+        <li><strong>Срок:</strong> 30.04 20:00</li>
+        <li>Задача с прошлой недели</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Собрать людей на веб 30 числа примерно в 19:30</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Антон</li>
+        <li><strong>Срок:</strong> 03.05 15:00 вместо 30.04 15:00</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Изучение Nuggets Community</h2>
+      <ul>
+        <li><strong>Ответственный:</strong> Гоша</li>
+        <li><strong>Срок:</strong> 30.04 20:00</li>
+        <li>Структура и занятия внутри и их продвижение + сделать оцифровку</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer class="page-footer">
+    План 27.04 — 03.05.2026 <span class="accent-dot"></span> Humble · Precise White Lab
+  </footer>
+
+</main>
+</body>
+</html>
